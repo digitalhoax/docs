@@ -606,37 +606,6 @@ The [Apple documentation](https://developer.apple.com/library/ios/documentation/
 _Notice_ that we've included the required bridging header file in the SDK, you just need to copy it to your project add it as the active bridging header file in the project settings as described in the links above.
 There's also an [example app](https://github.com/spark/spark-setup-ios-example), this app also demonstrates the Particle DeviceSetup library usage, as well as several Cloud SDK calls.
 
-#### Carthage (Recommended method)
-
-The SDK is now also available as a [Carthage](https://github.com/Carthage/Carthage) dependency since version 0.4.0.
-This should solve many issues SDK users has been reporting with mixing Swift dependencies in their projects and having to use the `use_frameworks!` directive in the `Podfile` -  that flag is required for any dynamic library, which includes anything written in Swift.
-You must have Carthage tool installed, if you don't then be sure to [install Carthage](https://github.com/Carthage/Carthage#installing-carthage) before you start.
-Then to build the iOS Cloud SDK, simply create a `Cartfile` on your project root folder, containing the following line:
-
-```
-github "spark/spark-sdk-ios" "master"
-```
-
-and then run the following command:
-`carthage update --platform iOS --use-submodules --no-use-binaries`.
-A new folder will be created in your project root folder - navigate to the `./Carthage/Build/iOS` folder and drag all the created `.framework`s file into your project in XCode.
-Go to your XCode target settings->General->Embedded binaries and make sure the `ParticleSDK.framework` and the `AFNetworking.framework` are listed there.
-Build your project - you now have the Particle SDK embedded in your project.
-
-##### Carthage example
-
-A new example app demonstrating the usage of Carthage installation method is available [here](https://github.com/spark/ios-app-example-carthage).
-This app is meant to serve as basic example for using the Particle Cloud SDK and Device Setup Library in the Carthage dependencies form.
-To get this example app running, clone it, open the project in XCode and:
-
-1. Flash the `firmware.c` (included in the repo project) firmware to an online photon available under your account, use Build or Dev or CLI.
-1. Set Photon's name to the constant deviceName in the testCloudSDK() function
-1. Set your username/password to the appropriate constants, same place
-1. Go the project root folder in your shell, run the setup shell script (under the /bin folder) which will build the latest Particle SDK 1. Carthage dependencies
-1. Drag the 3 created .framework files under /Carthage/Build/iOS to your project
-1. Go to XCode's target general settings and also add those frameworks to "embedded binaries"
-1. Run and experiment!
-
 ### Reference
 
 #### SparkCloud class
